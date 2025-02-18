@@ -84,12 +84,12 @@ Visit `http://localhost:3000` in your browser.
 # Running Tests
 This project includes **RSpec tests** for models and controllers.
 
-### 📌 Step 1: Install RSpec
+### Step 1: Install RSpec
 ```sh
 rails generate rspec:install
 ```
 
-### 📌 Step 2: Run the Tests
+### Step 2: Run the Tests
 ```sh
 rspec
 ```
