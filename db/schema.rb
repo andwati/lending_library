@@ -11,21 +11,41 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_02_18_072240) do
-# Could not dump table "books" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
+  create_table "books", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "author", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
+  create_table "borrows", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "date_borrowed", null: false
+    t.integer "duration", null: false
+    t.date "due_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_borrows_on_book_id"
+    t.index ["user_id"], name: "index_borrows_on_user_id"
+  end
 
-# Could not dump table "borrows" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
+  create_table "returns", force: :cascade do |t|
+    t.integer "borrow_id", null: false
+    t.datetime "date_returned", null: false
+    t.boolean "overdue", default: false
+    t.decimal "penalty", precision: 10, scale: 2, default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["borrow_id"], name: "index_returns_on_borrow_id"
+  end
 
-
-# Could not dump table "returns" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
-
-
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
-
+  create_table "users", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   add_foreign_key "borrows", "books"
   add_foreign_key "borrows", "users"

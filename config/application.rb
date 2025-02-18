@@ -23,5 +23,7 @@ module LendingLibrary
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # ensure active record uses UUIDs as default primary keys
   end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :books, only: [ :index, :show, :create, :update, :destroy ]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -11,4 +12,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  #
+  post "/borrow", to: "borrows#create"
+  get "/borrow/user/:user_id", to: "borrows#user_borrows"
+  get "/borrow/book/:book_id", to: "borrows#book_borrows"
+
+  post "/return", to: "returns#create"
+  get "/return/user/:user_id", to: "returns#user_returns"
+  get "/return/book/:book_id", to: "returns#book_returns"
 end
