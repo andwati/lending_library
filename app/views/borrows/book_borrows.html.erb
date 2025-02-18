@@ -1,0 +1,18 @@
+<h1>Borrowing History for "<%= @book.title %>"</h1>
+
+<table border="1">
+    <tr>
+        <th>Borrowed By</th>
+        <th>Date Borrowed</th>
+        <th>Due Date</th>
+    </tr>
+    <% @borrows.each do |borrow| %>
+    <tr>
+        <td><%= borrow.user.first_name %> <%= borrow.user.last_name %></td>
+        <td><%= borrow.date_borrowed.strftime('%Y-%m-%d') %></td>
+        <td><%= borrow.due_date.strftime('%Y-%m-%d') %></td>
+    </tr>
+    <% end %>
+</table>
+
+<%= link_to "Back to Books", books_path %>

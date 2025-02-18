@@ -50,6 +50,9 @@
 #   end
 # end
 class BorrowsController < ApplicationController
+  before_action :set_user, only: [ :user_borrows ]
+  before_action :set_book, only: [ :book_borrows ]
+
   def new
     @users = User.all
     @books = Book.all
@@ -72,7 +75,19 @@ class BorrowsController < ApplicationController
     @borrows = Borrow.where(user_id: params[:user_id])
   end
 
+  def book_borrows
+    @borrows = Borrow.where(book_id: params[:book_id])
+  end
+
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def set_book
+    @book = Book.find(params[:book_id])
+  end
 
   def borrow_params
     params.require(:borrow).permit(:book_id, :user_id, :duration)

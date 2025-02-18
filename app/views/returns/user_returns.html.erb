@@ -1,0 +1,22 @@
+<h1>Books Returned by <%= @user.first_name %> <%= @user.last_name %></h1>
+
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Date Borrowed</th>
+        <th>Date Returned</th>
+        <th>Overdue</th>
+        <th>Penalty</th>
+    </tr>
+    <% @returns.each do |return_record| %>
+    <tr>
+        <td><%= return_record.borrow.book.title %></td>
+        <td><%= return_record.borrow.date_borrowed.strftime('%Y-%m-%d') %></td>
+        <td><%= return_record.date_returned.strftime('%Y-%m-%d') %></td>
+        <td><%= return_record.overdue ? "Yes" : "No" %></td>
+        <td>Ksh <%= return_record.penalty %></td>
+    </tr>
+    <% end %>
+</table>
+
+<%= link_to "Back to Books", books_path %>

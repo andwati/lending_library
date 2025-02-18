@@ -1,24 +1,24 @@
-<h1>Borrow a Book</h1>
+<h1 class="text-center">Borrow a Book</h1>
 
-<%= form_with(model: @borrow, local: true) do |form| %>
-<p>
-    <%= form.label :user_id, "Select User" %><br>
-    <%= form.collection_select :user_id, @users, :id, :first_name %>
-</p>
+<div class="card shadow p-4">
+    <%= form_with(model: @borrow, local: true, class: "row g-3") do |form| %>
+    <div class="col-md-6">
+        <%= form.label :user_id, "Select User", class: "form-label" %>
+        <%= form.collection_select :user_id, @users, :id, :first_name, { prompt: "Choose a user" }, class: "form-select" %>
+    </div>
 
-<p>
-    <%= form.label :book_id, "Select Book" %><br>
-    <%= form.collection_select :book_id, @books, :id, :title %>
-</p>
+    <div class="col-md-6">
+        <%= form.label :book_id, "Select Book", class: "form-label" %>
+        <%= form.collection_select :book_id, @books, :id, :title, { prompt: "Choose a book" }, class: "form-select" %>
+    </div>
 
-<p>
-    <%= form.label :duration, "Borrow Duration (days)" %><br>
-    <%= form.number_field :duration, value: 7 %>
-</p>
+    <div class="col-md-6">
+        <%= form.label :duration, "Borrow Duration (days)", class: "form-label" %>
+        <%= form.number_field :duration, value: 7, class: "form-control" %>
+    </div>
 
-<p>
-    <%= form.submit "Borrow" %>
-</p>
-<% end %>
-
-<%= link_to "Back to Books", books_path %>
+    <div class="col-md-12 text-center">
+        <%= form.submit "Borrow", class: "btn btn-primary mt-3" %>
+    </div>
+    <% end %>
+</div>

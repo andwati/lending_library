@@ -126,7 +126,3 @@ rspec spec/controllers/books_controller_spec.rb
 
 # License
 This project is **MIT licensed**.
-
----
-
-Now you're all set to use and extend the **Library Lending System**! 🚀 Let me know if you need any improvements.
