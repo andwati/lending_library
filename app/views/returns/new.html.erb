@@ -1,0 +1,14 @@
+<h1>Return a Book</h1>
+
+<%= form_with(model: @return, local: true) do |form| %>
+<p>
+    <%= form.label :borrow_id, "Select Borrowed Book" %><br>
+    <%= form.collection_select :borrow_id, @borrows, :id, :book_id %>
+</p>
+
+<p>
+    <%= form.submit "Return Book" %>
+</p>
+<% end %>
+
+<%= link_to "Back to Books", books_path %>

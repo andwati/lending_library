@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  resources :books, only: [ :index, :show, :create, :update, :destroy ]
+  # resources :books, only: [ :index, :show, :create, :update, :destroy ]
+  # resources :users, only: [ :index, :show, :create ]
+  resources :books
+  resources :borrows, only: [ :new, :create ]
+  resources :returns, only: [ :new, :create ]
+
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
