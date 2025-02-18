@@ -10,5 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 0) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_18_072240) do
+# Could not dump table "books" because of following StandardError
+#   Unknown type 'uuid' for column 'id'
+
+
+# Could not dump table "borrows" because of following StandardError
+#   Unknown type 'uuid' for column 'id'
+
+
+# Could not dump table "returns" because of following StandardError
+#   Unknown type 'uuid' for column 'id'
+
+
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'uuid' for column 'id'
+
+
+  add_foreign_key "borrows", "books"
+  add_foreign_key "borrows", "users"
+  add_foreign_key "returns", "borrows"
 end

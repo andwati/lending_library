@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrow: one
+  date_returned: 2025-02-18 10:22:40
+  overdue: false
+  penalty: 9.99
+
+two:
+  borrow: two
+  date_returned: 2025-02-18 10:22:40
+  overdue: false
+  penalty: 9.99
