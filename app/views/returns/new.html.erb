@@ -4,7 +4,7 @@
     <%= form_with(model: @return, local: true, class: "row g-3") do |form| %>
     <div class="col-md-6">
         <%= form.label :borrow_id, "Select Borrowed Book", class: "form-label" %>
-        <%= form.collection_select :borrow_id, @borrows, :id, :book_id, { prompt: "Choose a borrowed book" }, class: "form-select" %>
+        <%= form.collection_select :borrow_id, @borrows, :id, :book_id, { prompt: "Choose a borrowed book", selected: @selected_borrow&.id }, class: "form-select" %>
     </div>
 
     <div class="col-md-12 text-center">

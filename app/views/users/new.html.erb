@@ -1,0 +1,23 @@
+<h1 class="text-center">Create New User</h1>
+
+<div class="card shadow p-4">
+    <%= form_with(model: @user, local: true) do |form| %>
+    <div class="mb-3">
+        <%= form.label :first_name, "First Name", class: "form-label" %>
+        <%= form.text_field :first_name, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :last_name, "Last Name", class: "form-label" %>
+        <%= form.text_field :last_name, class: "form-control", required: true %>
+    </div>
+
+    <div class="text-center">
+        <%= form.submit "Create User", class: "btn btn-success" %>
+    </div>
+    <% end %>
+</div>
+
+<div class="mt-4 text-center">
+    <%= link_to "Back to Dashboard", root_path, class: "btn btn-secondary" %>
+</div>

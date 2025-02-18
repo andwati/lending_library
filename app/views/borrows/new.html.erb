@@ -9,7 +9,7 @@
 
     <div class="col-md-6">
         <%= form.label :book_id, "Select Book", class: "form-label" %>
-        <%= form.collection_select :book_id, @books, :id, :title, { prompt: "Choose a book" }, class: "form-select" %>
+        <%= form.collection_select :book_id, @books, :id, :title, { prompt: "Choose a book", selected: @selected_book&.id }, class: "form-select" %>
     </div>
 
     <div class="col-md-6">

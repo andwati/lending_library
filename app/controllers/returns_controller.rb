@@ -5,6 +5,7 @@ class ReturnsController < ApplicationController
   def new
     @borrows = Borrow.all
     @return = Return.new
+    @selected_borrow = params[:borrow_id] ? Borrow.find(params[:borrow_id]) : nil
   end
 
   def create

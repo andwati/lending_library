@@ -1,0 +1,64 @@
+<h1 class="text-center"><%= @user.first_name %> <%= @user.last_name %>'s Activity</h1>
+
+<!-- Borrowing History -->
+<div class="card shadow mb-4">
+    <div class="card-header bg-info text-white">
+        <h3>Borrowed Books</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Book</th>
+                    <th>Date Borrowed</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @borrows.each do |borrow| %>
+                <tr>
+                    <td><%= borrow.book.title %></td>
+                    <td><%= borrow.date_borrowed.strftime('%Y-%m-%d') %></td>
+                    <td><%= borrow.due_date.strftime('%Y-%m-%d') %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Return History -->
+<div class="card shadow">
+    <div class="card-header bg-success text-white">
+        <h3>Returned Books</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Book</th>
+                    <th>Date Borrowed</th>
+                    <th>Date Returned</th>
+                    <th>Overdue</th>
+                    <th>Penalty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @returns.each do |return_record| %>
+                <tr>
+                    <td><%= return_record.borrow.book.title %></td>
+                    <td><%= return_record.borrow.date_borrowed.strftime('%Y-%m-%d') %></td>
+                    <td><%= return_record.date_returned.strftime('%Y-%m-%d') %></td>
+                    <td><%= return_record.overdue ? "Yes" : "No" %></td>
+                    <td>Ksh <%= return_record.penalty %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Back to Dashboard -->
+<div class="mt-4 text-center">
+    <%= link_to "Back to Dashboard", root_path, class: "btn btn-secondary" %>
+</div>

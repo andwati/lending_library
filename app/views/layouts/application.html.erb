@@ -16,8 +16,9 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="<%= books_path %>">Library System</a>
+            <a class="navbar-brand" href="<%= root_path %>">Library System</a>
             <ul class="navbar-nav">
+                <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "Books", books_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "Borrow", new_borrow_path, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to "Return", new_return_path, class: "nav-link" %></li>

@@ -9,16 +9,20 @@ class UsersController < ApplicationController
 
   # GET /users/:id - Retrieve a single user
   def show
-    render json: @user
+    @borrows = Borrow.where(user: @user).includes(:book)
+    @returns = Return.joins(:borrow).where(borrows: { user_id: @user.id }).includes(borrow: :book)
   end
 
-  # POST /users - Create a new user
+  def new
+    @user = User.new
+  end
+
   def create
-    user = User.new(user_params)
-    if user.save
-      render json: user, status: :created
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to root_path, notice: "User created successfully!"
     else
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+      render :new
     end
   end
 

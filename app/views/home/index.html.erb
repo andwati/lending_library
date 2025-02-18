@@ -1,0 +1,126 @@
+<h1 class="text-center mb-4">Library Dashboard</h1>
+
+<!-- List of Users -->
+<div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h3>Users</h3>
+        <%= link_to "Create New User", new_user_path, class: "btn btn-light btn-sm" %>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                <tr>
+                    <td><%= user.first_name %> <%= user.last_name %></td>
+                    <td>
+                        <%= link_to "View Activity", user_path(user), class: "btn btn-info btn-sm" %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- List of All Books -->
+<div class="card shadow mb-4">
+    <div class="card-header bg-dark text-white">
+        <h3>Available Books</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @books.each do |book| %>
+                <tr>
+                    <td><%= book.title %></td>
+                    <td><%= book.author %></td>
+                    <td>
+                        <%= link_to "Borrow", new_borrow_path(book_id: book.id), class: "btn btn-primary btn-sm" %>
+                    </td>
+
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Borrowed Books Section -->
+<div class="card shadow mb-4">
+    <div class="card-header bg-info text-white">
+        <h3>Borrowed Books</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Book</th>
+                    <th>Borrowed By</th>
+                    <th>Date Borrowed</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @borrows.each do |borrow| %>
+                <tr>
+                    <td><%= borrow.book.title %></td>
+                    <td><%= borrow.user.first_name %> <%= borrow.user.last_name %></td>
+                    <td><%= borrow.date_borrowed.strftime('%Y-%m-%d') %></td>
+                    <td><%= borrow.due_date.strftime('%Y-%m-%d') %></td>
+                    <td>
+                        <%= link_to "Return", new_return_path(borrow_id: borrow.id), class: "btn btn-success btn-sm" %>
+                    </td>
+
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Returned Books Section -->
+<div class="card shadow">
+    <div class="card-header bg-success text-white">
+        <h3>Returned Books</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Book</th>
+                    <th>Returned By</th>
+                    <th>Date Borrowed</th>
+                    <th>Date Returned</th>
+                    <th>Overdue</th>
+                    <th>Penalty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @returns.each do |return_record| %>
+                <tr>
+                    <td><%= return_record.borrow.book.title %></td>
+                    <td><%= return_record.borrow.user.first_name %> <%= return_record.borrow.user.last_name %></td>
+                    <td><%= return_record.borrow.date_borrowed.strftime('%Y-%m-%d') %></td>
+                    <td><%= return_record.date_returned.strftime('%Y-%m-%d') %></td>
+                    <td><%= return_record.overdue ? "Yes" : "No" %></td>
+                    <td>Ksh <%= return_record.penalty %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

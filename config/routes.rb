@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # resources :books, only: [ :index, :show, :create, :update, :destroy ]
   # resources :users, only: [ :index, :show, :create ]
+  root "home#index"
   resources :books
+  resources :users, only: [ :show, :new, :create ]  # Route to view user activity
   resources :borrows, only: [ :new, :create ]
   resources :returns, only: [ :new, :create ]
 
